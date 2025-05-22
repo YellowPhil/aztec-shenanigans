@@ -55,6 +55,10 @@ pub contract Voting {
         assert(context.msg_sender().eq(storage.admin.read()), "Only the admin can end the vote");
         storage.vote_ended.write(true);
     }
+    #[public]
+    fn get_winner() {
+        assert(storage.vote_ended.read().eq(true), "The vote has not ended yet");
+    }
 
 }
 fn main() {}
